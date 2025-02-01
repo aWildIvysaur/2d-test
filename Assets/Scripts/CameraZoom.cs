@@ -1,35 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class CameraZoom : MonoBehaviour {
 	[SerializeField] float zoomMult = 50f;
 	// Use this for initialization
-	void Start () {
-		GetComponent<Camera>().orthographicSize = 6; // Size u want to start with
+	private Controls controls;
+	private float zoomAxis = 0;
+	void Start () 
+	{
+		controls = new Controls();
+        controls.Enable();
+        controls.Camera.Zoom.performed += onZoomPerformed;
+        controls.Camera.Zoom.canceled += onZoomcancelled;
+	}
+
+	void onZoomPerformed(UnityEngine.InputSystem.InputAction.CallbackContext value)
+	{
+		zoomAxis = value.ReadValue<float>();
+	}
+
+	void onZoomcancelled(UnityEngine.InputSystem.InputAction.CallbackContext value)
+	{
+		zoomAxis = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if(Input.GetAxis("Mouse ScrollWheel") != 0) // Change From Q to anyother key you want
+
+		GetComponent<Camera>().orthographicSize = GetComponent<Camera>().orthographicSize + zoomMult * Time.deltaTime * zoomAxis;
+		if(GetComponent<Camera>().orthographicSize > 20)
 		{
-			GetComponent<Camera>().orthographicSize = GetComponent<Camera>().orthographicSize + -zoomMult*Time.deltaTime * Input.GetAxis("Mouse ScrollWheel");
-			if(GetComponent<Camera>().orthographicSize > 20)
-			{
-				GetComponent<Camera>().orthographicSize = 20; // Max size
-			}
-			else if(GetComponent<Camera>().orthographicSize < 1)
-			{
-				GetComponent<Camera>().orthographicSize = 1; // Min size 
-			}
+			GetComponent<Camera>().orthographicSize = 20; // Max size
 		}
-
-
-		// if(Input.GetKey(KeyCode.E)) // Also you can change E to anything
-		// {
-		// 	GetComponent<Camera>().orthographicSize = GetComponent<Camera>().orthographicSize - 5*Time.deltaTime;
-			
-		// }
+		else if(GetComponent<Camera>().orthographicSize < 1)
+		{
+			GetComponent<Camera>().orthographicSize = 1; // Min size 
+		}
+		
 	}
 }

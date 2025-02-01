@@ -19,6 +19,6 @@ public class MouseClick : MonoBehaviour
     void OnMouseDown() 
     {
         Vector3 mousePos = Input.mousePosition;
-        Debug.Log(mousePos.x + " " + mousePos.y);
+        //Debug.Log(mousePos.x + " " + mousePos.y);
     }
 }

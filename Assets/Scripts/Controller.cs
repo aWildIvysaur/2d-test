@@ -24,7 +24,6 @@ public class Controller : MonoBehaviour
     void Update()
     {
         isMouseClicked = Input.GetMouseButtonDown(0);
-        Debug.Log(isMouseClicked);
     }
 
     public void Hovering(GameObject hoveree)

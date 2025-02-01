@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415c46e0fb1ff4a4aab661c425caf3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomMult: 50
+  zoomMult: 1
 --- !u!81 &1088557089
 AudioListener:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519d3890fbb07ab429a9fbe23269207f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 50
+  panSpeed: 10
 --- !u!1 &1937518284
 GameObject:
   m_ObjectHideFlags: 0
