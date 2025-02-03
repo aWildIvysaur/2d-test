@@ -9,9 +9,10 @@ public class Clickable : MonoBehaviour
     [SerializeField] bool isSelected = false;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Controller = GameObject.Find("Controller");
+        Controller = GameObject.Find("ClickController");
+        Debug.Log(Controller);
     }
 
     // Update is called once per frame
